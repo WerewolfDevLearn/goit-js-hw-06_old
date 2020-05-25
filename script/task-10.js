@@ -1,32 +1,35 @@
-class StringBuilder {
-  constructor(string) {
-    this._value = string;
-  }
+import users from './users.js';
 
-  get value() {
-    return this._value;
-  }
+const getSortedUniqueSkills = users => {
+  const sortedUniqueSkills = users
+    .reduce((acc, user) => {
+      acc.push(...user.skills);
+      return acc;
+    }, [])
+    .filter((skill, index, skills) => index === skills.indexOf(skill))
+    .sort();
+  return sortedUniqueSkills;
+};
 
-  append(str) {
-    this._value = `${this._value}${str}`;
-  }
-
-  prepend(str) {
-    this._value = `${str}${this._value}`;
-  }
-
-  pad(str) {
-    this._value = `${str}${this._value}${str}`;
-  }
-}
-
-const builder = new StringBuilder('.');
-
-builder.append('^');
-console.log(builder._value); // '.^'
-
-builder.prepend('^');
-console.log(builder._value); // '^.^'
-
-builder.pad('=');
-console.log(builder._value); // '=^.^='
+console.log(getSortedUniqueSkills(users));
+// [
+//   'adipisicing',
+//   'amet',
+//   'anim',
+//   'commodo',
+//   'culpa',
+//   'elit',
+//   'ex',
+//   'ipsum',
+//   'irure',
+//   'laborum',
+//   'lorem',
+//   'mollit',
+//   'non',
+//   'nostrud',
+//   'nulla',
+//   'proident',
+//   'tempor',
+//   'velit',
+//   'veniam',
+// ];

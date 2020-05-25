@@ -1,24 +1,12 @@
-const Account = function(obj) {
-  this.login = obj.login;
-  this.email = obj.email;
+import users from './users.js';
+
+const getUsersWithAge = (users, min, max) => {
+  const usersWithAge = users.filter(user => user.age > min && user.age < max)
+  return usersWithAge
 };
 
-Account.prototype.getInfo = function() {
-  console.log('Login: ', this.login);
-  console.log('Email: ', this.email);
-};
+console.log(getUsersWithAge(users, 20, 30)); 
+// [объект Ross Vazquez, объект Elma Head, объект Carey Barr]
 
-console.log(Account.prototype.getInfo); // function
-
-const mango = new Account({
-  login: 'Mangozedog',
-  email: 'mango@dog.woof',
-});
-
-mango.getInfo(); // Login: Mangozedog, Email: mango@dog.woof
-
-const poly = new Account({
-  login: 'Poly',
-  email: 'poly@mail.com',
-});
-poly.getInfo(); // Login: Poly, Email: poly@mail.com
+console.log(getUsersWithAge(users, 30, 40));
+// [объект Moore Hensley, объект Sharlene Bush, объект Blackburn Dotson, объектb

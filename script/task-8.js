@@ -1,38 +1,19 @@
-class Storage {
-  constructor(arr) {
-    this.items = arr;
-  }
+import users from './users.js';
 
-  getItems() {
-    return this.items;
-  }
+console.log(users);
 
-  addItem(item) {
-    this.items.push(item);
-  }
+const getUsersWithFriend = (users, friendName) => {
+  const userWithFriend = users.reduce((acc, user) => {
+    if (user.friends.includes(friendName)) {
+      acc.push(user.name);
+    }
+    return acc;
+  }, []);
 
-  removeItem(item) {
-    this.items.splice(this.items.indexOf(item), 1);
-  }
+  return userWithFriend;
+};
 
-  // removeItem(item) {
-  // this.items.includes(item)
-  /* ? this.items.splice(this.items.indexOf(item), 1)*/
-  // : 'There is no such item!';
-  // }
-}
-const storage = new Storage([
-  'Нанитоиды',
-  'Пролонгер',
-  'Железные жупи',
-  'Антигравитатор',
-]);
-
-const items = storage.getItems();
-console.table(items); // [ "Нанитоиды", "Пролонгер", "Железные жупи", "Антигравитатор" ]
-
-storage.addItem('Дроид');
-console.table(storage.items); // [ "Нанитоиды", "Пролонгер", "Железные жупи", "Антигравитатор", "Дроид" ]
-
-storage.removeItem('Пролонгер');
-console.table(storage.items); // [ "Нанитоиды", "Железные жупи", "Антигравитатор", "Дроид" ]
+console.log(getUsersWithFriend(users, 'Briana Decker'));
+// [ 'Sharlene Bush', 'Sheree Anthony' ]
+console.log(getUsersWithFriend(users, 'Goldie Gentry'));
+// [ 'Elma Head', 'Sheree Anthony' ]
